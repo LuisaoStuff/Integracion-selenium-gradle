@@ -7,7 +7,7 @@ pipeline {
     }
     
     environment {
-	    SERVER = 'http://10.250.5.20:4444'
+	SERVER = 'http://10.250.5.20:4444'
         BROWSER = 'firefox'
         HEADLESS_VALUE = 'false'
     }
@@ -17,11 +17,10 @@ pipeline {
 // Múltiples Pruebas
                 multiple_tests()
                 
-/* Solo una prueba
-                withGradle {
-                    sh './gradlew test -Premote_server=${SERVER} -Pbrowser=${BROWSER} -Pheadless=${HEADLESS_VALUE}'
-                }
-*/
+// Solo una prueba
+//                withGradle {
+//                    sh './gradlew test -Premote_server=${SERVER} -Pbrowser=${BROWSER} -Pheadless=${HEADLESS_VALUE}'
+//                }
             }
             post {
                 always {
