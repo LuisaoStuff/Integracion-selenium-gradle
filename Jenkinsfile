@@ -16,7 +16,7 @@ pipeline {
             steps {
 // Múltiples Pruebas
                 multiple_tests()
-                
+		sh './gradlew checkstyleTest'                
 // Solo una prueba
 //                withGradle {
 //                    sh './gradlew test -Premote_server=${SERVER} -Pbrowser=${BROWSER} -Pheadless=${HEADLESS_VALUE}'
@@ -25,6 +25,7 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/**/TEST-*.xml'
+                    recordIssues enabledForFailure: true, tool: checkStyle()
                }
             }
         }
