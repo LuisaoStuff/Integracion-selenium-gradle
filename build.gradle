@@ -1,10 +1,30 @@
 plugins {
     id 'java'
     id 'io.qameta.allure' version '2.8.1'
+    id 'checkstyle'
 }
 
 group 'com.example'
 version '1.0-SNAPSHOT'
+
+checkstyle {
+    configFile = project(':').file("config/checkstyle/sun_checks.xml")
+    configProperties = ["suppressionFile" : project(':').file("config/checkstyle/suppressions.xml")]
+    toolVersion = "8.36.1"
+    ignoreFailures = true
+}
+
+checkstyleTest {
+    source ='src/test/java'
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -17,9 +37,6 @@ ext {
 }
 
 
-ext {
-
-}
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -38,9 +55,9 @@ dependencies {
 }
 
 test {
-    systemProperties["selenide.remote"] = remote_server
-    systemProperties["selenide.browser"] = browser
-    systemProperties["selenide.headless"] = headless
+//    systemProperties["selenide.remote"] = remote_server
+//    systemProperties["selenide.browser"] = browser
+//    systemProperties["selenide.headless"] = headless
 
     useJUnitPlatform()
 }
