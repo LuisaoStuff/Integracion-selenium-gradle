@@ -37,7 +37,8 @@ public class DevopsTest {
     FirefoxOptions options = new FirefoxOptions();
     options.setHeadless(true);
     driver = new FirefoxDriver(options);
-    */
+     */
+
     Configuration.startMaximized = true;
     open("about:blank");
     driver = getWebDriver();
@@ -45,27 +46,23 @@ public class DevopsTest {
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
+
   @AfterEach
   public void tearDown() {
     driver.quit();
   }
+
   @Test
   public void devopsTest() {
     driver.get("https://www.google.com/");
-//    driver.manage().window().setSize(new Dimension(697, 702));
     driver.switchTo().frame(0);
     driver.findElement(By.cssSelector("#introAgreeButton")).click();
     driver.switchTo().defaultContent();
     driver.findElement(By.name("q")).sendKeys("Devops");
     driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
-    js.executeScript("window.scrollTo(0,338)");
+    js.executeScript("window.scrollTo(0,388)");
     WebElement firstResult = new WebDriverWait(driver,10)
-            .until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(.,\'DevOps - Wikipedia, la enciclopedia libre\')]")));
-    driver.findElement(By.xpath("//span[contains(.,\'DevOps - Wikipedia, la enciclopedia libre\')]")).click();
-    {
-      WebElement element = driver.findElement(By.linkText("desarrollo de software"));
-      Actions builder = new Actions(driver);
-      builder.moveToElement(element).perform();
-    }
+            .until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(.,\'Qué es DevOps (y sobre todo qué no es DevOps) - Paradigma\')]")));
+    driver.findElement(By.xpath("//span[contains(.,\'Qué es DevOps (y sobre todo qué no es DevOps) - Paradigma\')]")).click();
   }
 }

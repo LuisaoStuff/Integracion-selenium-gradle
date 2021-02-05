@@ -13,10 +13,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.*;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
 
 public class RoboTest {
@@ -29,7 +32,7 @@ public class RoboTest {
     FirefoxOptions options = new FirefoxOptions();
     options.setHeadless(true);
     driver = new FirefoxDriver(options);
-*/
+ */
     Configuration.startMaximized = true;
     open("about:blank");
     driver = getWebDriver();
@@ -45,7 +48,8 @@ public class RoboTest {
   }
   @Test
   public void RoboTest() {
-    driver.get("http://localhost:3000/#!/");
+
+    driver.get("http://10.250.5.20:3000/#!/");
     //driver.manage().window().setSize(new Dimension(980, 706));
     WebElement inicio1 = new WebDriverWait(driver,10)
             .until(ExpectedConditions.elementToBeClickable(By.cssSelector(".ng-scope:nth-child(1) > td .input-group-append > .btn")));
