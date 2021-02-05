@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
 // Múltiples Pruebas
-                multiple_tests()
+//                multiple_tests()
 		sh './gradlew checkstyleTest'                
 // Solo una prueba
 //                withGradle {
