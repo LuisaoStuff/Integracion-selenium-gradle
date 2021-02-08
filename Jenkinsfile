@@ -24,7 +24,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'build/test-results/**/TEST-*.xml'
+//                    junit 'build/test-results/**/TEST-*.xml'
                     recordIssues (
                         enabledForFailure: true,
                         tool: checkStyle(pattern: 'build/reports/checkstyle/*.xml')
