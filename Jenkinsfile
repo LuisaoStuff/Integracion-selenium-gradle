@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
 // Múltiples Pruebas
-                multiple_tests()
+//                multiple_tests()
 		sh './gradlew checkstyleTest'                
 // Solo una prueba
 //                withGradle {
@@ -25,7 +25,10 @@ pipeline {
             post {
                 always {
                     junit 'build/test-results/**/TEST-*.xml'
-                    recordIssues enabledForFailure: true, tool: checkStyle()
+                    recordIssues {
+                        enabledForFailure: true,
+                        tool: checkStyle(pattern: 'build/reports/checkstyle/*.xml')
+                    }
                }
             }
         }
